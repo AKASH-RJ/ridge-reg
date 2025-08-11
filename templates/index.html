@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Demand Forecasting</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+    <h1>Demand Forecasting</h1>
+    <form method="POST" action="/predict">
+        <label>Advertising Spend ($):</label>
+        <input type="number" step="0.01" name="advertising" required>
+
+        <label>Product Price ($):</label>
+        <input type="number" step="0.01" name="price" required>
+
+        <label>Season (1=Spring, 2=Summer, 3=Fall, 4=Winter):</label>
+        <input type="number" name="season" min="1" max="4" required>
+
+        <label>Competitor Price ($):</label>
+        <input type="number" step="0.01" name="competitor_price" required>
+
+        <button type="submit">Predict</button>
+    </form>
+
+    {% if prediction_text %}
+        <h2>{{ prediction_text }}</h2>
+    {% endif %}
+</div>
+</body>
+</html>
